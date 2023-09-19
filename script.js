@@ -26,3 +26,12 @@ function saveCity(cityName) {
         localStorage.setItem("cities", JSON.stringify(cities));
     }
 }
+// adding event listener 
+document.getElementById("search-button").addEventListener("click", function(event) {
+    event.preventDefault();
+    let city = document.getElementById("search-input").value.trim();
+    if (city) {
+        getWeather(city);
+        document.getElementById("search-input").value = "";
+    }
+});
