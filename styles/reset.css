@@ -32,13 +32,37 @@ body {
 }
 /* search button styling */
 #search-button {
-    background-color: blue;
-    color: white;
-    margin: auto 2px;
+  background-color: blue;
+  color: white;
+  margin: auto 2px;
 }
 
 /* Styling for the 5-day forecast */
-#forecast .col-md-2.4 {
+#forecast .col-md-2 {
   background-color: #007bff; /* Blue color for forecast days */
   margin-right: 10px; /* Spacing between forecast days */
+}
+
+#forecast {
+    margin-top: 20px;
+}
+
+#forecast h4 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #343a40;
+}
+
+.col-md-2 {
+    flex: 0 0 20%;
+    max-width: 20%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+    .col-md-2{
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
 }
