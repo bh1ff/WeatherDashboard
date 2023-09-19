@@ -3,7 +3,7 @@ let cities = [];
 
 function getWeather(cityName) {
     let queryURL = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=imperial`;
-
+    console.log(queryURL)
     fetch(queryURL)
         .then(response => response.json())
         .then(data => {
@@ -42,3 +42,20 @@ document.getElementById("history").addEventListener("click", function(event) {
         getWeather(element.textContent);
     }
 });
+
+// initialisation
+function init() {
+    let storedCities = JSON.parse(localStorage.getItem("cities"));
+    if (storedCities !== null) {
+        cities = storedCities;
+    }
+
+    let lastCity = cities[cities.length - 1];
+    if (lastCity) {
+        getWeather(lastCity);
+    } else {
+        getWeather("London"); // Default city
+    }
+}
+
+init();
