@@ -135,6 +135,14 @@ function init() {
         cities = storedCities;
     }
 
+    // Populate the datalist with cities from local storage
+    let cityList = document.getElementById("city-list");
+    cities.forEach(city => {
+        let option = document.createElement("option");
+        option.value = city;
+        cityList.appendChild(option);
+    });
+
     let lastCity = cities[cities.length - 1];
     if (lastCity) {
         getWeather(lastCity);

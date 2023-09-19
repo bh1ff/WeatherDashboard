@@ -34,7 +34,7 @@ body {
 #search-button {
   background-color: blue;
   color: white;
-  margin: auto 2px;
+ padding: auto;
 }
 
 /* 5 day forecast  */
