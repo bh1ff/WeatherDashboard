@@ -98,6 +98,11 @@ function saveCity(cityName) {
     if (cities.indexOf(cityName) === -1) {
         cities.push(cityName);
         localStorage.setItem("cities", JSON.stringify(cities));
+
+        let cityList = document.getElementById("city-list");
+        let option = document.createElement("option");
+        option.value = cityName;
+        cityList.appendChild(option);
     }
 }
 
