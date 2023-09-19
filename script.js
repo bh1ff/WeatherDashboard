@@ -70,7 +70,7 @@ function displayForecast(data) {
         let dayData = data.list[i];
 
         let dayEl = document.createElement("div");
-        dayEl.classList.add("col-md-2.4", "forecast-day");
+        dayEl.classList.add("col-12", "col-md-2", "forecast-day");
 
         let dateEl = document.createElement("p");
         dateEl.textContent = dayjs(dayData.dt_txt).format('M/D/YYYY');
