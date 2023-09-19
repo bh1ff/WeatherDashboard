@@ -95,29 +95,26 @@ function displayForecast(data) {
 
 // Function to save city to local storage
 function saveCity(cityName) {
-    if (cities.indexOf(cityName) === -1) {
-        cities.push(cityName);
-        localStorage.setItem("cities", JSON.stringify(cities));
+    cities = [cityName]; // Always set cities to only the current city
+    localStorage.setItem("cities", JSON.stringify(cities));
 
-        let cityList = document.getElementById("city-list");
-        let option = document.createElement("option");
-        option.value = cityName;
-        cityList.appendChild(option);
-    }
+    // Log for debugging
+    console.log(`Saved ${cityName} to localStorage. Current cities:`, cities);
+
+    // Add the city to the datalist
+    let cityList = document.getElementById("city-list");
+    cityList.innerHTML = ""; // Clear previous options
+    let option = document.createElement("option");
+    option.value = cityName;
+    cityList.appendChild(option);
 }
 
 // Event listener for the search button
 document.getElementById("search-button").addEventListener("click", function(event) {
     event.preventDefault();
     let city = document.getElementById("search-input").value.trim();
-    
-    // Check if the city is in the pre-existing list
-    if (cities.includes(city)) {
-        getWeather(city);
-        document.getElementById("search-input").value = "";
-    } else {
-        alert("City not found in the list. Please select a city from the list.");
-    }
+    getWeather(city);
+    document.getElementById("search-input").value = "";
 });
 
 // Event listener for the history list
@@ -134,6 +131,9 @@ function init() {
     if (storedCities !== null) {
         cities = storedCities;
     }
+
+    // Log for debugging
+    console.log(`Retrieved cities from localStorage:`, cities);
 
     // Populate the datalist with cities from local storage
     let cityList = document.getElementById("city-list");
