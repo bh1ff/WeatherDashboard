@@ -11,3 +11,18 @@ function getWeather(cityName) {
             displayWeather(data, cityName);
         });
 }
+
+function displayWeather(data, cityName) {
+
+    document.getElementById("today").innerHTML = "";
+
+
+    saveCity(cityName);
+}
+
+function saveCity(cityName) {
+    if (cities.indexOf(cityName) === -1) {
+        cities.push(cityName);
+        localStorage.setItem("cities", JSON.stringify(cities));
+    }
+}
