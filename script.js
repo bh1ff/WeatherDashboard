@@ -62,31 +62,31 @@ function displayForecast(data) {
     let forecastEl = document.getElementById("forecast");
     forecastEl.innerHTML = "";
 
-    for (let i = 0; i < data.list.length; i += 8) {
+    let forecastTitle = document.createElement("h4");
+    forecastTitle.textContent = "5 Day Forecast";
+    forecastEl.appendChild(forecastTitle);
+
+    for (let i = 0; i < data.list.length; i+=8) { // 5 days, data every 3 hours, so we pick one data point per day
         let dayData = data.list[i];
-        let date = dayjs(dayData.dt_txt).format('M/D/YYYY');
-        let iconURL = "https://openweathermap.org/img/w/" + dayData.weather[0].icon + ".png";
-        let temp = dayData.main.temp;
-        let humidity = dayData.main.humidity;
 
         let dayEl = document.createElement("div");
-        dayEl.classList.add("col-md-2.4", "m-1", "bg-primary", "text-white", "rounded", "p-2");
+        dayEl.classList.add("col-md-2.4", "forecast-day");
 
-        let dateEl = document.createElement("h4");
-        dateEl.textContent = date;
+        let dateEl = document.createElement("p");
+        dateEl.textContent = dayjs(dayData.dt_txt).format('M/D/YYYY');
         dayEl.appendChild(dateEl);
 
         let iconEl = document.createElement("img");
-        iconEl.setAttribute("src", iconURL);
-        iconEl.setAttribute("alt", dayData.weather[0].description);
+        iconEl.src = "https://openweathermap.org/img/w/" + dayData.weather[0].icon + ".png";
+        iconEl.alt = dayData.weather[0].description;
         dayEl.appendChild(iconEl);
 
         let tempEl = document.createElement("p");
-        tempEl.textContent = `Temp: ${temp}°F`;
+        tempEl.textContent = `Temp: ${dayData.main.temp}°F`;
         dayEl.appendChild(tempEl);
 
         let humidityEl = document.createElement("p");
-        humidityEl.textContent = `Humidity: ${humidity}%`;
+        humidityEl.textContent = `Humidity: ${dayData.main.humidity}%`;
         dayEl.appendChild(humidityEl);
 
         forecastEl.appendChild(dayEl);
