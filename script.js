@@ -1,5 +1,5 @@
 // Define the API key and an array to store cities
-const apiKey = "0b26a0d735f1c68e879212c2650e5b40";
+const apiKey = "Removed for security";
 let cities = [];
 
 // Function to fetch weather data for a given city
